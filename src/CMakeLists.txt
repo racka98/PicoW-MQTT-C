@@ -1,4 +1,7 @@
 add_executable(${NAME} 
+        Agent.c
+        BlinkAgent.c
+        MQTTRouterLED.c
         blink.c
         blink_queue.c
         scheduling_priorities.c
