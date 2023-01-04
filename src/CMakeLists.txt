@@ -1,12 +1,13 @@
 add_executable(${NAME} 
         Agent.c
         BlinkAgent.c
-        MQTTRouterLED.c
-        blink.c
-        blink_queue.c
-        scheduling_priorities.c
-        mutex.c
-        semaphore.c
+        #MQTTRouterLED.c
+        WiFiHelper.c
+        main.c
+        # blink_queue.c
+        # scheduling_priorities.c
+        # mutex.c
+        # semaphore.c
         )
 
 # pull in common dependencies
@@ -23,15 +24,18 @@ target_link_libraries(${NAME}
 	coreMQTTAgent                      # coreMQTT Agent for FreeRTOS
         )
 
+# Setting up credentials. If it fails, check if you followed instructions in "example_device.cmake"
+include(../creds/device.cmake)
+
 # Compile definitions needed by the project
 target_compile_definitions(${NAME} PRIVATE
-    WIFI_SSID=\"$ENV{WIFI_SSID}\"
-    WIFI_PASSWORD=\"$ENV{WIFI_PASSWORD}\"
-    MQTT_CLIENT=\"$ENV{MQTT_CLIENT}\"
-    MQTT_USER=\"$ENV{MQTT_USER}\"
-    MQTT_PASSWD=\"$ENV{MQTT_PASSWD}\"
-    MQTT_HOST=\"$ENV{MQTT_HOST}\"
-    MQTT_PORT=$ENV{MQTT_PORT}
+    WIFI_SSID=\"${WIFI_SSID_SET}\"
+    WIFI_PASSWORD=\"${WIFI_PASSWORD_SET}\"
+    MQTT_CLIENT=\"${MQTT_CLIENT_SET}\"
+    MQTT_USER=\"${MQTT_USER_SET}\"
+    MQTT_PASSWD=\"${MQTT_PASSWD_SET}\"
+    MQTT_HOST=\"${MQTT_HOST_SET}\"
+    MQTT_PORT=${MQTT_PORT_SET}
     configNUM_CORES=2
 )
 

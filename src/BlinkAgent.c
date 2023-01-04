@@ -21,7 +21,7 @@ static char pBlinkTaskName[MAX_NAME_LEN];
  * Get the static depth required in words
  * @return - words
  */
-configSTACK_DEPTH_TYPE getMaxStackSize();
+static configSTACK_DEPTH_TYPE getMaxStackSize();
 
 /***
  * Get high water for stack
@@ -81,6 +81,18 @@ void stop_blink_agent() {
     }
 }
 
+// we assume WiFi was already connected since we are blinking onboard LED
+static void blink_agent_task(void* pvParameters) {
+    printf("Blink Started\n");
+
+    while (true) {
+        cyw43_arch_gpio_put(BLINK_LED_PAD, 1);
+        vTaskDelay(DELAY);  // Delay by TICKS defined by FreeRTOS priorities
+        cyw43_arch_gpio_put(BLINK_LED_PAD, 0);
+        vTaskDelay(DELAY);
+    }
+}
+
 bool start_blink_agent(const char* name, UBaseType_t priority) {
     BaseType_t res;
 
@@ -101,16 +113,4 @@ bool start_blink_agent(const char* name, UBaseType_t priority) {
         &xBlinkHandle       // Task Handle if available for managing the task
     );
     return (res == pdPASS);
-}
-
-// we assume WiFi was already connected since we are blinking onboard LED
-static void blink_agent_task(void* pvParameters) {
-    printf("Blink Started\n");
-
-    while (true) {
-        cyw43_arch_gpio_put(BLINK_LED_PAD, 1);
-        vTaskDelay(DELAY);  // Delay by TICKS defined by FreeRTOS priorities
-        cyw43_arch_gpio_put(BLINK_LED_PAD, 0);
-        vTaskDelay(DELAY);
-    }
 }

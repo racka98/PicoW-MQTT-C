@@ -100,5 +100,6 @@ creds/device1.bat
 creds/device1.sh
 creds/device2.bat
 creds/device2.sh
+creds/device.cmake
 
 # End of https://www.toptal.com/developers/gitignore/api/c,c++,cmake
