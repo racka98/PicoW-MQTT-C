@@ -26,26 +26,19 @@
 void runTimeStats();
 
 void main_task(void *pvParameters);
+void vLaunch(void);
 
 int main() {
     stdio_init_all();  // Initialize
 
-    // Create Your Task
-    xTaskCreate(
-        main_task,   // Task to be run
-        "LED_TASK",  // Name of the Task for debugging and managing its Task Handle
-        256,         // Stack depth to be allocated for use with task's stack (see docs)
-        NULL,        // Arguments needed by the Task (NULL because we don't have any)
-        1,           // Task Priority - Higher the number the more priority [max is (configMAX_PRIORITIES - 1) provided in FreeRTOSConfig.h]
-        NULL         // Task Handle if available for managing the task
-    );
+    sleep_ms(2000);
+    printf("GO\n");
 
-    // Should start you scheduled Tasks (such as the LED_Task above)
-    vTaskStartScheduler();
-
-    while (true) {
-        // Your program should never get here
-    };
+    /* Configure the hardware ready to run the demo. */
+    const char *rtos_name;
+    rtos_name = "FreeRTOS";
+    printf("Starting %s on core 0:\n", rtos_name);
+    vLaunch();
 
     return 0;
 }
@@ -101,6 +94,15 @@ void main_task(void *pvParameters) {
             }
         }
     }
+}
+
+void vLaunch(void) {
+    TaskHandle_t task;
+
+    xTaskCreate(main_task, "MainThread", 2048, NULL, TASK_PRIORITY, &task);
+
+    /* Start the tasks and timer running. */
+    vTaskStartScheduler();
 }
 
 void runTimeStats() {
