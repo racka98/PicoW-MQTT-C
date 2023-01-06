@@ -3,6 +3,8 @@ add_executable(${NAME}
         BlinkAgent.c
         #MQTTRouterLED.c
         WiFiHelper.c
+        NetTCPTransport.c
+        TestTransport.c
         main.c
         # blink_queue.c
         # scheduling_priorities.c

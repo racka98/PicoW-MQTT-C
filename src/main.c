@@ -9,6 +9,7 @@
 #include <task.h>
 
 #include "WiFiHelper.h"
+#include "TestTransport.h"
 
 // Check these definitions where added from the makefile
 #ifndef WIFI_SSID
@@ -78,6 +79,9 @@ void main_task(void *pvParameters) {
     // Print Gateway
     wifi_getGWAddressStr(ipStr);
     printf("Gateway: %s\n", ipStr);
+
+    // Test TCP Transport
+    start_transport_agent("test", TASK_PRIORITY);
 
     while (true) {
         runTimeStats();
