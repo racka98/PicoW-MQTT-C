@@ -4,6 +4,9 @@ add_executable(${NAME}
         #MQTTRouterLED.c
         WiFiHelper.c
         NetTCPTransport.c
+        MyMQTTAgent.c
+        MQTTAgentObserver.c
+        MQTTTopicHelper.c
         TestTransport.c
         main.c
         # blink_queue.c

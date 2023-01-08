@@ -157,11 +157,11 @@ uint32_t tcp_getCurrentTime() {
 }
 
 // this was directly translated from C++, will have to check its significance
-int32_t tcp_staticSend(NetworkContext_t *pNetworkContext, const void *pBuffer, size_t bytesToSend) {
+static int32_t tcp_staticSend(NetworkContext_t *pNetworkContext, const void *pBuffer, size_t bytesToSend) {
     return tcp_transSend(pNetworkContext, pBuffer, bytesToSend);
 }
 
-int32_t tcp_staticRead(NetworkContext_t *pNetworkContext, void *pBuffer, size_t bytesToRecv) {
+static int32_t tcp_staticRead(NetworkContext_t *pNetworkContext, void *pBuffer, size_t bytesToRecv) {
     return tcp_transRead(pNetworkContext, pBuffer, bytesToRecv);
 }
 

@@ -9,7 +9,9 @@
 #include <task.h>
 
 #include "WiFiHelper.h"
-#include "TestTransport.h"
+// #include "TestTransport.h"
+#include "MQTTAgentObserver.h"
+#include "MyMQTTAgent.h"
 
 // Check these definitions where added from the makefile
 #ifndef WIFI_SSID
@@ -17,6 +19,21 @@
 #endif
 #ifndef WIFI_PASSWORD
 #error "WIFI_PASSWORD not defined"
+#endif
+#ifndef MQTT_CLIENT
+#error "MQTT_CLIENT not defined"
+#endif
+#ifndef MQTT_USER
+#error "MQTT_PASSWD not defined"
+#endif
+#ifndef MQTT_PASSWD
+#error "MQTT_PASSWD not defined"
+#endif
+#ifndef MQTT_HOST
+#error "MQTT_HOST not defined"
+#endif
+#ifndef MQTT_PORT
+#error "MQTT_PORT not defined"
 #endif
 
 // LED PAD defintions
@@ -72,16 +89,32 @@ void main_task(void *pvParameters) {
     wifi_getIPAddressStr(ipStr);
     printf("IP ADDRESS: %s\n", ipStr);
 
-    // Print Net Mask
-    wifi_getNetMaskStr(ipStr);
-    printf("Net Mask: %s\n", ipStr);
+    // // Print Net Mask
+    // wifi_getNetMaskStr(ipStr);
+    // printf("Net Mask: %s\n", ipStr);
 
-    // Print Gateway
-    wifi_getGWAddressStr(ipStr);
-    printf("Gateway: %s\n", ipStr);
+    // // Print Gateway
+    // wifi_getGWAddressStr(ipStr);
+    // printf("Gateway: %s\n", ipStr);
 
     // Test TCP Transport
-    start_transport_agent("test", TASK_PRIORITY);
+    // start_transport_agent("test", TASK_PRIORITY);
+
+    // Setup for MQTT Connection
+    char mqttTarget[] = MQTT_HOST;
+    int mqttPort = MQTT_PORT;
+    char mqttClient[] = MQTT_CLIENT;
+    char mqttUser[] = MQTT_USER;
+    char mqttPwd[] = MQTT_PASSWD;
+
+    mqtt_agent_credentials(mqttUser, mqttPwd, mqttClient);
+
+    printf("Connecting to: %s(%d)\n", mqttTarget, mqttPort);
+    printf("Client id: %.4s...\n", mqtt_agent_getId());
+    printf("User id: %.4s...\n", mqttUser);
+
+    mqtt_agent_connect(mqttTarget, mqttPort, true);
+    mqtt_agent_start(TASK_PRIORITY);
 
     while (true) {
         runTimeStats();

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <FreeRTOS.h>
 #include <pico/stdlib.h>
 #include <stdio.h>

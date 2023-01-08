@@ -14,12 +14,12 @@
 
 /**
  * Setup all required variables
-*/
+ */
 void tcp_setup();
 
 /**
  * Clear everything to default state
-*/
+ */
 void tcp_destruct();
 
 /***
@@ -28,7 +28,7 @@ void tcp_destruct();
  * @param port - Port number
  * @return true on success
  */
-bool tcp_transConnect(const char* host, uint16_t port);
+bool tcp_transConnect(const char *host, uint16_t port);
 
 /***
  * Get status of the socket
@@ -49,7 +49,7 @@ bool tcp_transClose();
  * @param bytesToSend - number of bytes to send
  * @return number of bytes sent
  */
-int32_t tcp_transSend(NetworkContext_t* pNetworkContext, const void* pBuffer, size_t bytesToSend);
+int32_t tcp_transSend(NetworkContext_t *pNetworkContext, const void *pBuffer, size_t bytesToSend);
 
 /***
  * Send
@@ -58,14 +58,14 @@ int32_t tcp_transSend(NetworkContext_t* pNetworkContext, const void* pBuffer, si
  * @param bytesToRecv
  * @return
  */
-int32_t tcp_transRead(NetworkContext_t* pNetworkContext, void* pBuffer, size_t bytesToRecv);
+int32_t tcp_transRead(NetworkContext_t *pNetworkContext, void *pBuffer, size_t bytesToRecv);
 
 /***
  * returns current time, as time in ms since boot
  * Required for MQTT Agent library
  * @return
  */
-static uint32_t tcp_getCurrentTime();
+uint32_t tcp_getCurrentTime();
 
 /***
  * Static function to send data through socket from buffer
@@ -74,7 +74,7 @@ static uint32_t tcp_getCurrentTime();
  * @param bytesToSend - number of bytes to send
  * @return number of bytes sent
  */
-static int32_t tcp_staticSend(NetworkContext_t* pNetworkContext, const void* pBuffer, size_t bytesToSend);
+static int32_t tcp_staticSend(NetworkContext_t *pNetworkContext, const void *pBuffer, size_t bytesToSend);
 
 /***
  * Read data from network socket. Non blocking returns 0 if no data
@@ -84,9 +84,9 @@ static int32_t tcp_staticSend(NetworkContext_t* pNetworkContext, const void* pBu
  * @return number of bytes read. May be 0 as non blocking
  * Negative number indicates error
  */
-static int32_t tcp_staticRead(NetworkContext_t* pNetworkContext, void* pBuffer, size_t bytesToRecv);
+static int32_t tcp_staticRead(NetworkContext_t *pNetworkContext, void *pBuffer, size_t bytesToRecv);
 
 /***
  * Print the buffer in hex and plain text for debugging
  */
-void tcp_debugPrintBuffer(const char* title, const void* pBuffer, size_t bytes);
+void tcp_debugPrintBuffer(const char *title, const void *pBuffer, size_t bytes);
