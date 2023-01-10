@@ -18,6 +18,7 @@ set(COREMQTT_AGENT_PORT_PATH ${CMAKE_CURRENT_LIST_DIR}/configs/CoreMQTT-Agent) #
 include(lwip_import.cmake) # lwip config files
 SET(FREERTOS_CONFIG_FILE_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/configs/FreeRTOS-Kernel" CACHE STRING "Local Config")
 include_directories("${FREERTOS_CONFIG_FILE_DIRECTORY}") # FreeRTOS config files
+include_directories("${TWIN_THING_PICO_CONFIG_PATH}") # twinThingPicoW config files
 
 # Initialize the Pico SDK
 pico_sdk_init() 
@@ -28,6 +29,6 @@ include(FreeRTOS_core_MQTT.cmake) # Configure FreeRTOS coreMQTT
 include(FreeRTOS_core_MQTT_Agent.cmake) # Configure FreeRTOS coreMQTT Agent
 include(json_maker.cmake) # Configure json-maker lib
 include(tiny_json.cmake) # Configure tiny-json lib
-include(twinThingPicoW_import.cmake) # Import twinThingPicoW lib
+#include(twinThingPicoW_import.cmake) # Import twinThingPicoW lib
 
 add_subdirectory(src) # Source code dir

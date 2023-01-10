@@ -41,92 +41,104 @@
 #define MQTT_STATE_PAYLOAD_GET "{\"GET\":1}"
 #endif
 
-/***
- * Get length of the lifecycle topic, to allow dynamic creation of string
- * @param id = think ID
- * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
- * @return
- */
-size_t mqtt_helper_lenLifeCycleTopic(const char *id, const char *name);
+class MQTTTopicHelper {
+   public:
+    /***
+     * Constructor - unused as static
+     */
+    MQTTTopicHelper();
+    /***
+     * Destructor
+     */
+    virtual ~MQTTTopicHelper();
 
-/***
- * generate the lifecycle topic for thing
- * @param topic - out to write the topic
- * @param id - id of the thing
- * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
- */
-void mqtt_helper_genLifeCycleTopic(char *topic, const char *id, const char *name);
+    /***
+     * Get length of the lifecycle topic, to allow dynamic creation of string
+     * @param id = think ID
+     * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
+     * @return
+     */
+    static size_t lenLifeCycleTopic(const char *id, const char *name);
 
-/***
- * Get length of the thing topic, under the ID in structure
- * @param id - string id of the thing
- * @param name - string name of the topic
- * @return
- */
-size_t mqtt_helper_lenThingTopic(const char *id, const char *name);
+    /***
+     * generate the lifecycle topic for thing
+     * @param topic - out to write the topic
+     * @param id - id of the thing
+     * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
+     */
+    static void genLifeCycleTopic(char *topic, const char *id, const char *name);
 
-/***
- * Generate the thing topic full name
- * @param topic - output to write topic too
- * @param id - string id of the thing
- * @param name - string name of the topic
- */
-void mqtt_helper_genThingTopic(char *topic, const char *id, const char *name);
+    /***
+     * Get length of the thing topic, under the ID in structure
+     * @param id - string id of the thing
+     * @param name - string name of the topic
+     * @return
+     */
+    static size_t lenThingTopic(const char *id, const char *name);
 
-/***
- * Get length of the Group topic, under the ID in structure
- * @param grp - string  of the group name
- * @param name - string name of the topic
- * @return
- */
-size_t mqtt_helper_lenGroupTopic(const char *grp, const char *name);
+    /***
+     * Generate the thing topic full name
+     * @param topic - output to write topic too
+     * @param id - string id of the thing
+     * @param name - string name of the topic
+     */
+    static void genThingTopic(char *topic, const char *id, const char *name);
 
-/***
- * Generate the group topic full name
- * @param topic - output to write topic too
- * @param grp - string of group anme
- * @param name - string name of the topic
- */
-void mqtt_helper_genGroupTopic(char *topic, const char *grp, const char *name);
+    /***
+     * Get length of the Group topic, under the ID in structure
+     * @param grp - string  of the group name
+     * @param name - string name of the topic
+     * @return
+     */
+    static size_t lenGroupTopic(const char *grp, const char *name);
 
-/***
- * Topic length of update topics published by thing
- * @param id of thing
- * @return
- */
-size_t mqtt_helper_lenThingUpdate(const char *id);
+    /***
+     * Generate the group topic full name
+     * @param topic - output to write topic too
+     * @param grp - string of group anme
+     * @param name - string name of the topic
+     */
+    static void genGroupTopic(char *topic, const char *grp, const char *name);
 
-/***
- * Generate update topic for thing
- * @param topic - output to write to
- * @param id - Id of thing
- */
-void mqtt_helper_getThingUpdate(char *topic, const char *id);
+    /***
+     * Topic length of update topics published by thing
+     * @param id of thing
+     * @return
+     */
+    static size_t lenThingUpdate(const char *id);
 
-/***
- * Topic length of get topics published by thing
- * @param id of thing
- * @return
- */
-size_t mqtt_helper_lenThingGet(const char *id);
+    /***
+     * Generate update topic for thing
+     * @param topic - output to write to
+     * @param id - Id of thing
+     */
+    static void getThingUpdate(char *topic, const char *id);
 
-/***
- * Generate get topic for thing
- * @param topic - output to write to
- * @param id - Id of thing
- */
-void mqtt_helper_getThingGet(char *topic, const char *id);
+    /***
+     * Topic length of get topics published by thing
+     * @param id of thing
+     * @return
+     */
+    static size_t lenThingGet(const char *id);
 
-/***
- * Topic length of set topics published by thing
- * @param id of thing
- * @return
- */
-size_t mqtt_helper_lenThingSet(const char *id);
+    /***
+     * Generate get topic for thing
+     * @param topic - output to write to
+     * @param id - Id of thing
+     */
+    static void getThingGet(char *topic, const char *id);
 
-/***
- * Generate set topic for thing
- * @param topic - output to write to
- * @param id - Id of thing
- */
-void mqtt_helper_getThingSet(char *topic, const char *id);
+    /***
+     * Topic length of set topics published by thing
+     * @param id of thing
+     * @return
+     */
+    static size_t lenThingSet(const char *id);
+
+    /***
+     * Generate set topic for thing
+     * @param topic - output to write to
+     * @param id - Id of thing
+     */
+    static void getThingSet(char *topic, const char *id);
+};

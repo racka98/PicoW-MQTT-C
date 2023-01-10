@@ -1,14 +1,10 @@
 add_executable(${NAME} 
-        Agent.c
-        BlinkAgent.c
-        #MQTTRouterLED.c
-        WiFiHelper.c
-        NetTCPTransport.c
-        MyMQTTAgent.c
-        MQTTAgentObserver.c
-        MQTTTopicHelper.c
-        TestTransport.c
-        main.c
+        WiFiHelper.cpp
+        TCPTransport.cpp
+        MQTTAgent.cpp
+        MQTTAgentObserver.cpp
+        MQTTTopicHelper.cpp
+        main.cpp
         # blink_queue.c
         # scheduling_priorities.c
         # mutex.c
@@ -22,7 +18,7 @@ target_link_libraries(${NAME}
         FreeRTOS-Kernel-Heap4              # FreeRTOS kernel and dynamic heap
         FREERTOS_PORT                      # FreeRTOS config files
         LWIP_PORT                          # LWIP config files
-        twinThingPicoW                     # twinThingPicoW helper lib
+        # twinThingPicoW                     # twinThingPicoW helper lib
 	json_maker                         # Library for constructing json
 	tiny_json                          # Library for parsing json
 	coreMQTT                           # coreMQTT for FreeRTOS
