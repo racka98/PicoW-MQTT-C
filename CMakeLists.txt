@@ -27,8 +27,8 @@ pico_sdk_init()
 include(FreeRTOS_Kernel_import.cmake) # Configure FreeRTOS Kernel
 include(FreeRTOS_core_MQTT.cmake) # Configure FreeRTOS coreMQTT
 include(FreeRTOS_core_MQTT_Agent.cmake) # Configure FreeRTOS coreMQTT Agent
-include(json_maker.cmake) # Configure json-maker lib
-include(tiny_json.cmake) # Configure tiny-json lib
+# include(json_maker.cmake) # Configure json-maker lib
+# include(tiny_json.cmake) # Configure tiny-json lib
 #include(twinThingPicoW_import.cmake) # Import twinThingPicoW lib
 
 add_subdirectory(src) # Source code dir

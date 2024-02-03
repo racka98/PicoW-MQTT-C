@@ -1,9 +1,10 @@
 
-#include "WifiHelper.h"
+#include "WiFiHelper.h"
 
 #include "FreeRTOS.h"
 #include "pico/cyw43_arch.h"
 #include "pico/util/datetime.h"
+#include "logger.h"
 #include "task.h"
 
 WifiHelper::WifiHelper() {
@@ -33,7 +34,7 @@ bool WifiHelper::init() {
 
 bool WifiHelper::join(const char *sid, const char *password, uint8_t retries) {
     cyw43_arch_enable_sta_mode();
-    printf("Connecting to WiFi... %s \n", WIFI_SSID);
+    logger("Connecting to WiFi... %s \n", WIFI_SSID);
 
     // Loop trying to connect to Wifi
     int r = -1;
@@ -43,7 +44,7 @@ bool WifiHelper::join(const char *sid, const char *password, uint8_t retries) {
         r = cyw43_arch_wifi_connect_timeout_ms(sid, password, CYW43_AUTH_WPA2_AES_PSK, 60000);
 
         if (r) {
-            printf("Failed to join AP.\n");
+            logger("Failed to join AP.\n");
             if (attempts >= retries) {
                 return false;
             }

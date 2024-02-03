@@ -1,10 +1,11 @@
-add_executable(${NAME} 
+add_executable(${NAME}
         WiFiHelper.cpp
         TCPTransport.cpp
         MQTTAgent.cpp
         MQTTAgentObserver.cpp
         MQTTTopicHelper.cpp
         main.cpp
+        logger.cpp
         # blink_queue.c
         # scheduling_priorities.c
         # mutex.c
@@ -19,8 +20,8 @@ target_link_libraries(${NAME}
         FREERTOS_PORT                      # FreeRTOS config files
         LWIP_PORT                          # LWIP config files
         # twinThingPicoW                     # twinThingPicoW helper lib
-	json_maker                         # Library for constructing json
-	tiny_json                          # Library for parsing json
+	# json_maker                         # Library for constructing json
+	# tiny_json                          # Library for parsing json
 	coreMQTT                           # coreMQTT for FreeRTOS
 	coreMQTTAgent                      # coreMQTT Agent for FreeRTOS
         )
@@ -40,12 +41,13 @@ target_compile_definitions(${NAME} PRIVATE
     configNUM_CORES=2
 )
 
-        
+
 # Enable print functionality on usb & disable on uart
-pico_enable_stdio_usb(${NAME} 1) 
+pico_enable_stdio_usb(${NAME} 1)
 pico_enable_stdio_uart(${NAME} 0)
 
 # create map/bin/hex file etc.
 pico_add_extra_outputs(${NAME})
 
 target_include_directories(${NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR} )
+
