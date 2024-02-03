@@ -1,0 +1,18 @@
+[submodule "external/FreeRTOS-Kernel"]
+	path = external/FreeRTOS-Kernel
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+[submodule "external/pico-sdk"]
+	path = external/pico-sdk
+	url = https://github.com/raspberrypi/pico-sdk.git
+[submodule "external/coreMQTT-Agent"]
+	path = external/coreMQTT-Agent
+	url = https://github.com/FreeRTOS/coreMQTT-Agent.git
+[submodule "external/coreMQTT"]
+	path = external/coreMQTT
+	url = https://github.com/FreeRTOS/coreMQTT.git
+[submodule "external/json-maker"]
+	path = external/json-maker
+	url = https://github.com/rafagafe/json-maker.git
+[submodule "external/tiny-json"]
+	path = external/tiny-json
+	url = https://github.com/rafagafe/tiny-json.git
